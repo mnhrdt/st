@@ -832,8 +832,8 @@ xloadfonts(char *fontstr, double fontsize)
 	if (xloadfont(&dc.ifont, pattern))
 		die("st: can't open font %s\n", fontstr);
 
-	FcPatternDel(pattern, FC_WEIGHT);
-	FcPatternAddInteger(pattern, FC_WEIGHT, FC_WEIGHT_BOLD);
+	//FcPatternDel(pattern, FC_WEIGHT);
+	//FcPatternAddInteger(pattern, FC_WEIGHT, FC_WEIGHT_BOLD);
 	if (xloadfont(&dc.ibfont, pattern))
 		die("st: can't open font %s\n", fontstr);
 
@@ -1187,9 +1187,9 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 	}
 
 	if (base.mode & ATTR_REVERSE) {
-		temp = fg;
-		fg = bg;
-		bg = temp;
+		//temp = fg; fg = bg; bg = temp;
+		(void)temp;
+		bg = &dc.col[defaultrev];
 	}
 
 	if ((base.mode & ATTR_BOLD_FAINT) == ATTR_FAINT) {
