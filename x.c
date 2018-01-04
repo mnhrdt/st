@@ -1189,12 +1189,6 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 		}
 	}
 
-	if (base.mode & ATTR_REVERSE) {
-		//temp = fg; fg = bg; bg = temp;
-		(void)temp;
-		bg = &dc.col[defaultrev];
-	}
-
 	if ((base.mode & ATTR_BOLD_FAINT) == ATTR_FAINT) {
 		colfg.red = fg->color.red / 2;
 		colfg.green = fg->color.green / 2;
@@ -1204,11 +1198,10 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 		fg = &revfg;
 	}
 
-
 	if (base.mode & ATTR_REVERSE) {
-		temp = fg;
-		fg = bg;
-		bg = temp;
+		//temp = fg; fg = bg; bg = temp;
+		(void)temp;
+		bg = &dc.col[defaultrev];
 	}
 
 	if (base.mode & ATTR_BLINK && term.mode & MODE_BLINK)
